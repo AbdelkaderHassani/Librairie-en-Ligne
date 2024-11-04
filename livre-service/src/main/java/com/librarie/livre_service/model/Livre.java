@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 
 public class Livre {
     @Id
@@ -18,19 +21,12 @@ public class Livre {
     private Long id;
     private String titre;
     private String auteur;
-    // Constructeurs , Getteurs et Setteurs
-    public Livre(Long id , String titre , String auteur){
-        this.id=id;
-        this.titre=titre;
-        this.auteur=auteur;
-    }
-    public Long getId(){return id;}
-    public void setId(Long id) {this.id=id;}
-    public String getTitre(){return titre;}
-    public void setTitre(String titre) {this.titre=titre;}
-    public String getAuteur(){return auteur;}
-    public void setAuteur(String auteur) {this.auteur=auteur;}
-    }
+    private double prix;
+
+
+}
+
+
 
 
 
