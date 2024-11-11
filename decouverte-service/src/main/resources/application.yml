@@ -4,7 +4,7 @@ server:
 
 
 
-eurka:
+eureka:
   client:
-    register-with-eurka: false
+    register-with-eureka: false
     fetch-registry: false

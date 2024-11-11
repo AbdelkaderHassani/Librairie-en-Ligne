@@ -1,4 +1,4 @@
-package com.librairie.commande_service;
+package com.librarie.commande_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

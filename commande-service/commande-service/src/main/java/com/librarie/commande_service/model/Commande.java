@@ -1,26 +1,22 @@
-package com.librarie.livre_service.model;
+package com.librarie.commande_service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import lombok.*;
 
+import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
-public class Livre {
+@Data
+public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String titre;
-    private String auteur;
-    private double prix;
-
-
+    private Long numéro;
+    private Date date;
+    private String etat;
 }
-
-
-

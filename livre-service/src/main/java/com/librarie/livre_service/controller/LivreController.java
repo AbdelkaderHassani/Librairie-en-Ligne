@@ -47,7 +47,7 @@ public class LivreController {
     }
 
     // UPDATE - Modifier un livre existant
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public ResponseEntity<Livre> updateLivre(@PathVariable Long id, @RequestBody Livre livreDetails) {
         if (livreDetails == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class LivreController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
     // DELETE - Supprimer un livre
     @DeleteMapping("/{id}")

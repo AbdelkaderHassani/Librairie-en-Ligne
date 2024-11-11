@@ -1,4 +1,4 @@
-package com.librairie.commande_service;
+package com.librarie.commande_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
