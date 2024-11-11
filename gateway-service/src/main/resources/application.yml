@@ -1,0 +1,22 @@
+server:
+  port: 8888 # Port for the API gateway
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: livre-service
+          uri: lb://livre-service
+          predicates:
+            - Path=/api/livres/**
+        - id: commande-service
+          uri: lb://commande-service
+          predicates:
+            - Path=/api/commandes/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
