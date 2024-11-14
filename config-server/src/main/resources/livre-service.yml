@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: livre-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/livresdb
+    username: root
+    password: Abdelkader1919
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8088

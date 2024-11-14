@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: commande-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/commandesdb  # Correction ici
+    username: root
+    password: Abdelkader1919
+  jpa:
+    hibernate:
+      ddl-auto: update
