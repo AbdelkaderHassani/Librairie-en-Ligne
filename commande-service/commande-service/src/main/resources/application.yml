@@ -8,6 +8,22 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    show:-sql: true # affiche les requettes dans le console
+    properties:
+      hibernate:
+        format_sql: true # formatte les reqeuttes sql pour le rendre lisibles
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+
+
+
 
 
 eureka:
@@ -16,3 +32,5 @@ eureka:
             defaultZone: http://localhost:8761/eureka
 
 
+server:
+  port: 8089

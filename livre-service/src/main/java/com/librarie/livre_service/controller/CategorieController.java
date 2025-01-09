@@ -55,10 +55,25 @@ public class CategorieController {
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCategorie(@PathVariable Long id) {
         try {
-            categorieRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            if (categorieRepository.existsById(id)) {
+                categorieRepository.deleteById(id);
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);  // Catégorie supprimée avec succès
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // Catégorie non trouvée
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);  // Erreur lors de la suppression
+        }
+    }
+
+    // Supprimer toutes les catégories
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllCategories() {
+        try {
+            categorieRepository.deleteAll();  // Supprimer toutes les catégories
+            return new ResponseEntity<>("Toutes les catégories ont été supprimées avec succès.", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Erreur lors de la suppression des catégories.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

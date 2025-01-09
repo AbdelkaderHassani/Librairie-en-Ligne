@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: auth-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/usersdb?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: Abdelkader1919
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+  # Configuration pour MailHog (utilisée en mode développement)
+  mail:
+    host: localhost
+    port: 1025
+    username: test
+    password: test
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+
+security:
+  jwt:
+    secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    expiration-time: 3600000 # 1 heure en millisecondes
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8005
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hassaniabdelkaderhh@gmail.com
+    password: abcd efgh ijkl mnop  # Remplacez par votre mot de passe d'application Gmail
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+springdoc:
+  swagger-ui:
+    enabled: false
+logging:
+  level:
+    org.springframework.security: DEBUG

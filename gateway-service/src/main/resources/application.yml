@@ -1,5 +1,5 @@
 server:
-  port: 8888 # Port for the API gateway
+  port: 8888
 
 spring:
   application:
@@ -15,7 +15,14 @@ spring:
           uri: lb://commande-service
           predicates:
             - Path=/api/commandes/**
-
+        - id: livre-service-categorie
+          uri: lb://livre-service
+          predicates:
+            - Path=/api/categories/**
+        - id: auth-api-user
+          uri: lb://auth-api
+          predicates:
+            - Path=/api/users/**
 eureka:
   client:
     service-url:

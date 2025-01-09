@@ -6,12 +6,16 @@ spring:
         username: root
         password: Abdelkader1919
     jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
         hibernate:
             ddl-auto: update
+
+server:
+    port: 8088
+
 eureka:
     client:
         service-url:
             defaultZone: http://localhost:8761/eureka
-
-server:
-    port: 8088

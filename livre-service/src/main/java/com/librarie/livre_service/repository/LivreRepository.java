@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LivreRepository extends JpaRepository<Livre, Long> {
-
-    // Méthode pour trouver les livres par catégorie
     List<Livre> findByCategorie(Categorie categorie);
 }
