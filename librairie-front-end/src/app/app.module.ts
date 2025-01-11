@@ -13,7 +13,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotPasswordComponent
     
    
   ],
@@ -34,6 +37,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
    MyMaterialModule,
+   [ReactiveFormsModule],
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

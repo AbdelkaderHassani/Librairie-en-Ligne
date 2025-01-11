@@ -3,18 +3,36 @@
   </mat-toolbar>
   <mat-card class="my-card">
      <mat-card-content>
-        <form class="my-form">
-           <mat-form-field class="full-width">
-              <mat-label>Email</mat-label>
-              <input  matInput  placeholder="Email" name="email">
-           </mat-form-field>
-           <mat-form-field class="full-width">
-              <mat-label>Password</mat-label>
-              <input  matInput  placeholder="Password" name="password">
-           </mat-form-field>
+      <form [formGroup]="loginForm" class="my-form">
+         <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+            <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
+              Email is required
+            </small>
+            <small class="text-danger" *ngIf="email?.touched && email?.errors?.['email']">
+              Invalid email format
+            </small>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
+              Password is required
+            </small>
+            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['minlength']">
+              Must be at least 8 characters
+            </small>
+            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['pattern']">
+              Must include uppercase, lowercase, number, and special character
+            </small>
+          </mat-form-field>
         </form>
      </mat-card-content>
      <mat-card-actions>
         <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
      </mat-card-actions>
+     <div class="text-center">
+      <a class="small" routerLink="/forgot">Forgot Password?</a>
+  </div>
   </mat-card>

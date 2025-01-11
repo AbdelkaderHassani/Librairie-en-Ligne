@@ -1,46 +1,117 @@
-<mat-toolbar>
-    <span>Registration</span>
+
+  <mat-toolbar class="register-title">
+    <span>REGISTRATION</span>
   </mat-toolbar>
-  <mat-card class="my-card">
-    <mat-card-content>
-        <form class="my-form">
-           <mat-form-field class="full-width">
-                  <mat-label>First Name</mat-label>
-                  <input  matInput  placeholder="First name"  name="fname"  required>
-               </mat-form-field>
-               <mat-form-field class="full-width">
-                  <mat-label>Last Name</mat-label>
-                  <input  matInput  placeholder="Last Name" name="lname"  required>
-               </mat-form-field>
-               <mat-form-field class="full-width">
-                  <mat-label>Address</mat-label>
-                  <input  matInput  placeholder="Address" name="address"  required>
-               </mat-form-field>
-               <mat-form-field class="full-width">
-                  <mat-label>Email</mat-label>
-                  <input  matInput  placeholder="Email" name="email">
-               </mat-form-field>
-               <mat-form-field class="full-width">
-                  <mat-label>Password</mat-label>
-                  <input  matInput  placeholder="1234"  name="password">
-               </mat-form-field>
-               <section class="example-section">
-                <label class="example-margin">Gender:</label>
-                <mat-radio-group>
-                  <mat-radio-button class="example-margin" value="after">Male</mat-radio-button>
-                  <mat-radio-button class="example-margin" value="before">Female</mat-radio-button>
-                  <mat-radio-button class="example-margin" value="before">Other</mat-radio-button>
-                </mat-radio-group>
-              </section>
-              <mat-form-field>
-                <mat-label>Date of Birth</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
-      </mat-card-actions>
-  </mat-card>
+<mat-card class="my-card">
+  <mat-card-content>
+    <form [formGroup]="registerForm" class="my-form">
+      <mat-form-field class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name"  formControlName="fname">
+        <small class="text-danger" *ngIf="fname?.touched && fname?.errors?.['required']">
+          First name is required
+        </small>
+        <small class="text-danger" *ngIf="fname?.touched && fname?.errors?.['minlength']">
+          il faut min  3 characters
+        </small>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" formControlName="lname">
+        <small class="text-danger" *ngIf="lname?.touched && lname?.errors?.['required']">
+          Last name is required
+        </small>
+        <small class="text-danger" *ngIf="lname?.touched && lname?.errors?.['minlength']">
+          il faut min 3 characters
+        </small>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Address" formControlName="address">
+        <small class="text-danger" *ngIf="address?.touched && address?.errors?.['required']">
+          Address is required
+        </small>
+        <small class="text-danger" *ngIf="address?.touched && address?.errors?.['minlength']">
+          il faut min  3 characters
+        </small>
+      </mat-form-field>
+      
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email">
+        <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
+          Email is required
+        </small>
+        <small class="text-danger" *ngIf="email?.touched && email?.errors?.['email']">
+          Invalid email 
+        </small>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Confirmation Email</mat-label>
+        <input matInput placeholder="Confirmation Email" formControlName="confirmationemail">
+        <small class="text-danger" *ngIf="confirmationemail?.touched && confirmationemail?.errors?.['required']">
+          Email is required
+        </small>
+        <small class="text-danger" *ngIf="confirmationemail?.touched && confirmationemail?.errors?.['email']">
+          Invalid email 
+        </small>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
+          Password is required
+        </small>
+        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['minlength']">
+          doit contenir 8 characters
+        </small>
+        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['pattern']">
+          Must include uppercase, lowercase, number, and special character
+        </small>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Repeat Password</mat-label>
+        <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword">
+        <small class="text-danger" *ngIf="repeatepassword?.touched && repeatepassword?.errors?.['required']">
+          Repeat password is required
+        </small>
+      </mat-form-field>
+
+      <section class="example-section">
+        <label class="example-margin">Gender:</label>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
+          <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
+          <mat-radio-button class="example-margin" value="other">Other</mat-radio-button>
+        </mat-radio-group>
+        <small class="text-danger" *ngIf="gender?.touched && gender?.errors?.['required']">
+          Gender is required
+        </small>
+      </section>
+
+      <mat-form-field>
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <small class="text-danger" *ngIf="dob?.touched && dob?.errors?.['required']">
+          Date of birth is required
+        </small>
+      </mat-form-field>
+      
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary" [disabled]="registerForm.invalid">REGISTER</button>
+  </mat-card-actions>
+</mat-card>
+ 
+  
+
+
+
