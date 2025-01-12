@@ -42,9 +42,9 @@ springdoc:
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: production
+#  config:
+#    activate:
+#      on-profile: production
   mail:
     host: smtp.gmail.com
     port: 587
@@ -56,6 +56,25 @@ spring:
           auth: true
           starttls:
             enable: true
+  application:
+    name: auth-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/usersdb?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: Abdelkader1919
+  ## Hibernate properties
+  jpa:
+    hibernate:
+      ddl-auto: update   # Utilisez 'update' uniquement en développement
+    open-in-view: false
+
+security:
+  jwt:
+    secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    expiration-time: 3600000  # 1h in milliseconds
+server:
+  port: 8005
+
 springdoc:
   swagger-ui:
     enabled: false
