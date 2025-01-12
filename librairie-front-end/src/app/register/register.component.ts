@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from '../auth-service.service';
+import { User } from '../models/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  user: User = new User;
   registerForm: FormGroup;
+  registeruser = { email: '', password: '', username: '' };
 
-  constructor(private fb: FormBuilder) {
+  message: string = '';
+  constructor(private fb: FormBuilder,private authService: AuthService) {
     this.registerForm = this.fb.group({
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,12 +36,26 @@ export class RegisterComponent {
     });
   }
 
-  register() {
+  signup() {
+    this.authService.signup(this.registeruser).subscribe(
+      response => {
+        this.message = 'Inscription réussie !';
+      },
+      error => {
+        console.error(error);
+        this.message = 'Erreur lors de l’inscription.';
+      }
+    );
+  }
+
+
+  signupVal() {
     if (this.registerForm.valid) {
       console.log('Form Submitted', this.registerForm.value);
     } else {
       this.registerForm.markAllAsTouched();
     }
+    
   }
 
   get fname() {

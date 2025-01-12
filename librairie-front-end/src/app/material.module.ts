@@ -45,7 +45,7 @@ exports: [
     MatInputModule,
     MatRadioModule,
     MatListModule,
-    FormsModule,
+   
     ReactiveFormsModule,
 ],
 })

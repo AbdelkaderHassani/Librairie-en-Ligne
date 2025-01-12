@@ -7,7 +7,7 @@
     <form [formGroup]="registerForm" class="my-form">
       <mat-form-field class="full-width">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name"  formControlName="fname">
+        <input matInput placeholder="First Name"  formControlName="firstname" , [(ngModel)]="user.firstname">
         <small class="text-danger" *ngIf="fname?.touched && fname?.errors?.['required']">
           First name is required
         </small>
@@ -18,18 +18,18 @@
 
       <mat-form-field class="full-width">
         <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" formControlName="lname">
-        <small class="text-danger" *ngIf="lname?.touched && lname?.errors?.['required']">
+        <input matInput placeholder="Last Name" formControlName="lastname" , [(ngModel)]="user.lname">
+        <small class="text-danger" *ngIf="lastname?.touched && lastname?.errors?.['required']">
           Last name is required
         </small>
-        <small class="text-danger" *ngIf="lname?.touched && lname?.errors?.['minlength']">
+        <small class="text-danger" *ngIf="lastname?.touched && lastname?.errors?.['minlength']">
           il faut min 3 characters
         </small>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Address</mat-label>
-        <input matInput placeholder="Address" formControlName="address">
+        <input matInput placeholder="Address" formControlName="address" , [(ngModel)]="user.address">
         <small class="text-danger" *ngIf="address?.touched && address?.errors?.['required']">
           Address is required
         </small>
@@ -41,7 +41,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email">
+        <input matInput placeholder="Email" formControlName="email" , [(ngModel)]="user.email">
         <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
           Email is required
         </small>
@@ -49,20 +49,11 @@
           Invalid email 
         </small>
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Confirmation Email</mat-label>
-        <input matInput placeholder="Confirmation Email" formControlName="confirmationemail">
-        <small class="text-danger" *ngIf="confirmationemail?.touched && confirmationemail?.errors?.['required']">
-          Email is required
-        </small>
-        <small class="text-danger" *ngIf="confirmationemail?.touched && confirmationemail?.errors?.['email']">
-          Invalid email 
-        </small>
-      </mat-form-field>
+      
 
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Password" formControlName="password">
+        <input matInput type="password" placeholder="Password" formControlName="password", [(ngModel)]="user.password">
         <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
           Password is required
         </small>
@@ -76,7 +67,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Repeat Password</mat-label>
-        <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword">
+        <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword" , [(ngModel)]="user.repeatepassword">
         <small class="text-danger" *ngIf="repeatepassword?.touched && repeatepassword?.errors?.['required']">
           Repeat password is required
         </small>
@@ -107,7 +98,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="register()" color="primary" [disabled]="registerForm.invalid">REGISTER</button>
+    <button mat-raised-button (click)="signupVal()" color="primary" [disabled]="registerForm.invalid">REGISTER</button>
   </mat-card-actions>
 </mat-card>
  
