@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth-service.service';
+import { FormBuilder, FormGroup, Validators , AbstractControl } from '@angular/forms';
+import { AuthService } from '../service/auth-service.service';
 import { User } from '../models/user';
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import { User } from '../models/user';
 export class RegisterComponent {
   user: User = new User;
   registerForm: FormGroup;
-  registeruser = { email: '', password: '', username: '' };
+  registeruser = { fname: '', lname: '', address: '', email: '', password: '', repeatepassword: '', gender: '', dob: '' };
 
   message: string = '';
   constructor(private fb: FormBuilder,private authService: AuthService) {
@@ -18,8 +18,11 @@ export class RegisterComponent {
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required, Validators.minLength(3)]],
       address: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      confirmationemail: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,
+        this.emailWithDotValidator, 
+       
+       ]],
+      
       password: [
         '',
         [
@@ -30,13 +33,34 @@ export class RegisterComponent {
           ),
         ],
       ],
-      repeatepassword: ['', [Validators.required]],
+      repeatepassword: ['', [Validators.required
+                              
+                             
+      ],],
       gender: ['', Validators.required],
       dob: ['', Validators.required],
     });
   }
+  
+  // Validation personnalisée pour vérifier la présence d'un point
+  emailWithDotValidator(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (value && !value.includes('.')) {
+      return { missingDot: true }; // Retourne une erreur si le point est absent
+    }
+    return null; // Aucune erreur
+  }
+  
 
   signup() {
+    this.registeruser.lname = this.registerForm.value.lname;
+    this.registeruser.fname = this.registerForm.value.fname; // Par exemple, si username correspond à fname
+    this.registeruser.email = this.registerForm.value.email;
+    this.registeruser.password = this.registerForm.value.password;
+    this.registeruser.repeatepassword = this.registerForm.value.repeatepassword;
+    this.registeruser.gender = this.registerForm.value.gender;
+    this.registeruser.dob = this.registerForm.value.dob;
+    
     this.authService.signup(this.registeruser).subscribe(
       response => {
         this.message = 'Inscription réussie !';
@@ -47,6 +71,7 @@ export class RegisterComponent {
       }
     );
   }
+  
 
 
   signupVal() {
@@ -70,9 +95,7 @@ export class RegisterComponent {
   get email() {
     return this.registerForm.get('email');
   }
-  get confirmationemail(){
-    return this.registerForm.get('confirmationemail');
-  }
+  
   get password() {
     return this.registerForm.get('password');
   }

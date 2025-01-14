@@ -7,72 +7,58 @@
     <form [formGroup]="registerForm" class="my-form">
       <mat-form-field class="full-width">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name"  formControlName="firstname" , [(ngModel)]="user.firstname">
-        <small class="text-danger" *ngIf="fname?.touched && fname?.errors?.['required']">
-          First name is required
-        </small>
-        <small class="text-danger" *ngIf="fname?.touched && fname?.errors?.['minlength']">
-          il faut min  3 characters
-        </small>
+        <input matInput placeholder="First Name"  formControlName="firstname" , [(ngModel)]="user.fname">
+       
+        <ul class="text-danger" *ngIf="fname?.touched">
+          <li *ngIf="fname?.errors?.['required']">Le prénom est obligatoire.</li>
+          <li *ngIf="fname?.errors?.['minlength']">Le prénom doit contenir au moins 3 caractères.</li>
+        </ul>
       </mat-form-field>
-
+    
       <mat-form-field class="full-width">
         <mat-label>Last Name</mat-label>
         <input matInput placeholder="Last Name" formControlName="lastname" , [(ngModel)]="user.lname">
-        <small class="text-danger" *ngIf="lastname?.touched && lastname?.errors?.['required']">
-          Last name is required
-        </small>
-        <small class="text-danger" *ngIf="lastname?.touched && lastname?.errors?.['minlength']">
-          il faut min 3 characters
-        </small>
+        <ul class="text-danger" *ngIf="lname?.touched">
+          <li *ngIf="lname?.errors?.['required']">Le nom est obligatoire.</li>
+          <li *ngIf="lname?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</li>
+        </ul>
       </mat-form-field>
-
       <mat-form-field class="full-width">
         <mat-label>Address</mat-label>
         <input matInput placeholder="Address" formControlName="address" , [(ngModel)]="user.address">
-        <small class="text-danger" *ngIf="address?.touched && address?.errors?.['required']">
-          Address is required
-        </small>
-        <small class="text-danger" *ngIf="address?.touched && address?.errors?.['minlength']">
-          il faut min  3 characters
-        </small>
+        <ul class="text-danger" *ngIf="address?.touched">
+          <li *ngIf="address?.errors?.['required']">L'adresse est obligatoire.</li>
+          <li *ngIf="address?.errors?.['minlength']">L'adresse doit contenir au moins 3 caractères.</li>
+        </ul>
       </mat-form-field>
-      
-
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" formControlName="email" , [(ngModel)]="user.email">
-        <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
-          Email is required
-        </small>
-        <small class="text-danger" *ngIf="email?.touched && email?.errors?.['email']">
-          Invalid email 
-        </small>
+        <ul class="text-danger" *ngIf="email?.touched">
+          <li *ngIf="email?.errors?.['required']">L'email est obligatoire.</li>
+          <li *ngIf="email?.errors?.['email']">L'email est invalide.</li>
+          <li *ngIf="email?.errors?.['missingDot']">L'email doit contenir un point.</li>
+        </ul>
       </mat-form-field>
-      
-
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Password" formControlName="password", [(ngModel)]="user.password">
-        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
-          Password is required
-        </small>
-        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['minlength']">
-          doit contenir 8 characters
-        </small>
-        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['pattern']">
-          Must include uppercase, lowercase, number, and special character
-        </small>
-      </mat-form-field>
 
+        <ul class="text-danger" *ngIf="password?.touched">
+          <li *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire.</li>
+          <li *ngIf="password?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères.</li>
+          <li *ngIf="password?.errors?.['pattern']">Le mot de passe doit inclure une majuscule, une minuscule, un chiffre et un caractère spécial.</li>
+        </ul>
+      </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Repeat Password</mat-label>
         <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword" , [(ngModel)]="user.repeatepassword">
-        <small class="text-danger" *ngIf="repeatepassword?.touched && repeatepassword?.errors?.['required']">
-          Repeat password is required
-        </small>
+        <ul class="text-danger" *ngIf="repeatepassword?.touched">
+          <li *ngIf="repeatepassword?.errors?.['required']">La confirmation du mot de passe est obligatoire.</li>
+          <li *ngIf="repeatepassword?.errors?.['minlength']">La confirmation doit contenir au moins 8 caractères.</li>
+          <li *ngIf="repeatepassword?.errors?.['pattern']">La confirmation doit inclure une majuscule, une minuscule, un chiffre et un caractère spécial.</li>
+        </ul>
       </mat-form-field>
-
       <section class="example-section">
         <label class="example-margin">Gender:</label>
         <mat-radio-group formControlName="gender">
@@ -80,9 +66,9 @@
           <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
           <mat-radio-button class="example-margin" value="other">Other</mat-radio-button>
         </mat-radio-group>
-        <small class="text-danger" *ngIf="gender?.touched && gender?.errors?.['required']">
-          Gender is required
-        </small>
+        <ul class="text-danger" *ngIf="gender?.touched">
+          <li *ngIf="gender?.errors?.['required']">Le genre est obligatoire.</li>
+        </ul>
       </section>
 
       <mat-form-field>
@@ -90,9 +76,9 @@
         <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <small class="text-danger" *ngIf="dob?.touched && dob?.errors?.['required']">
-          Date of birth is required
-        </small>
+        <ul class="text-danger" *ngIf="dob?.touched">
+          <li *ngIf="dob?.errors?.['required']">La date de naissance est obligatoire.</li>
+        </ul>
       </mat-form-field>
       
     </form>

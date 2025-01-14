@@ -7,25 +7,28 @@
          <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName="email">
-            <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
-              Email is required
+            <ul class="text-danger" *ngIf="email?.touched">
+              <small>
+              <li *ngIf="email?.errors?.['required']">L'email est obligatoire.</li>
+              </small>
+              <small>
+              <li *ngIf="email?.errors?.['email']">L'email est invalide.</li>
             </small>
-            <small class="text-danger" *ngIf="email?.touched && email?.errors?.['email']">
-              Invalid email format
+            <small>
+              <li *ngIf="email?.errors?.['missingDot']">L'email doit contenir un point.</li>
             </small>
+            </ul>
+
           </mat-form-field>
           <mat-form-field class="full-width">
             <mat-label>Password</mat-label>
             <input matInput type="password" placeholder="Password" formControlName="password">
-            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
-              Password is required
-            </small>
-            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['minlength']">
-              Must be at least 8 characters
-            </small>
-            <small class="text-danger" *ngIf="password?.touched && password?.errors?.['pattern']">
-              Must include uppercase, lowercase, number, and special character
-            </small>
+            <ul class="text-danger" *ngIf="password?.touched ">
+              <li *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire.</li>
+            </ul>
+              
+         
+            
           </mat-form-field>
         </form>
      </mat-card-content>

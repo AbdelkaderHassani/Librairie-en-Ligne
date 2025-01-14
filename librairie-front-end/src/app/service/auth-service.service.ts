@@ -7,14 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8888/auth'; // URL de votre microservice d'authentification
+  private baseUrl = 'http://localhost:8080/auth'; // URL de votre microservice d'authentification
+ 
 
 
   constructor(private http: HttpClient) {}
 
 
   // Méthode pour l'inscription
-  signup(data: { email: string; password: string; username: string }): Observable<any> {
+  signup(data: { email: string; password: string; lname: string; fname: string;  }): Observable<any> {
     return this.http.post(`${this.baseUrl}/signup`, data);
   }
 

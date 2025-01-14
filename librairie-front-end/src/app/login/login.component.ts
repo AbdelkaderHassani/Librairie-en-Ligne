@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators , AbstractControl } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,15 +11,18 @@ export class LoginComponent {
  constructor(private fb: FormBuilder) {
   this.loginForm = this.fb.group({
     
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email,
+      this.emailWithDotValidator,
+    
+    ]],
     password: [
       '',
       [
         Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/
-        ),
+        
+        
+          
+        
       ],
     ],
     
@@ -37,5 +41,12 @@ export class LoginComponent {
   }
   get password() {
     return this.loginForm.get('password');
+  }
+  emailWithDotValidator(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (value && !value.includes('.')) {
+      return { missingDot: true }; // Retourne une erreur si le point est absent
+    }
+    return null; // Aucune erreur
   }
 }
