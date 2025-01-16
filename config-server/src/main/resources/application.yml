@@ -8,8 +8,16 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AbdelkaderHassani/config-service  # Correction de l'URL
+          uri: https://github.com/AbdelkaderHassani/config-service
+          # Si nécessaire, ajoutez un chemin de recherche pour des fichiers spécifiques
+          search-paths: '{application}'
+          # Spécifiez la branche par défaut si ce n'est pas 'main'
           default-label: main
+
+eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka  # URL correcte de Eureka
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    # Identification unique si plusieurs instances sont présentes
+    hostname: localhost

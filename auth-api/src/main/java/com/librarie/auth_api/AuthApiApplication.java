@@ -19,44 +19,4 @@ public class AuthApiApplication {
 		SpringApplication.run(AuthApiApplication.class, args);
 	}
 
-	@Component
-	public class DataInitializer implements CommandLineRunner {
-
-		@Autowired
-		private RoleRepository roleRepository;
-
-		@Autowired
-		private PermissionRepository permissionRepository;
-
-		@Override
-		public void run(String... args) {
-			// Créer les permissions
-			for (EnumPermission enumPermission : EnumPermission.values()) {
-				Permission permission = new Permission();
-				permission.setName(enumPermission);
-				permissionRepository.save(permission);
-			}
-
-			// Récupérer les permissions
-			Permission readPermission = permissionRepository.findByName(EnumPermission.READ).orElseThrow();
-			Permission createPermission = permissionRepository.findByName(EnumPermission.CREATE).orElseThrow();
-			Permission updatePermission = permissionRepository.findByName(EnumPermission.UPDATE).orElseThrow();
-			Permission deletePermission = permissionRepository.findByName(EnumPermission.DELETE).orElseThrow();
-
-			// Créer les rôles
-			Role userRole = new Role();
-			userRole.setName(EnumRole.USER);
-			userRole.setPermissions(Set.of(readPermission));
-
-			Role adminRole = new Role();
-			adminRole.setName(EnumRole.ADMIN);
-			adminRole.setPermissions(Set.of(readPermission, createPermission, updatePermission, deletePermission));
-
-			Role managerRole = new Role();
-			managerRole.setName(EnumRole.MANAGER);
-			managerRole.setPermissions(Set.of(readPermission, updatePermission));
-
-			roleRepository.saveAll(List.of(userRole, adminRole, managerRole));
-		}
-	}
 }

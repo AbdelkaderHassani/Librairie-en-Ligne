@@ -1,67 +1,70 @@
-
-  <mat-toolbar class="register-title">
-    <span>REGISTRATION</span>
-  </mat-toolbar>
+<mat-toolbar class="register-title">
+  <span>REGISTRATION</span>
+</mat-toolbar>
 <mat-card class="my-card">
   <mat-card-content>
     <form [formGroup]="registerForm" class="my-form">
       <mat-form-field class="full-width">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name"  formControlName="firstname" , [(ngModel)]="user.fname">
-       
+        <input matInput placeholder="First Name" formControlName="fname" >
         <ul class="text-danger" *ngIf="fname?.touched">
           <li *ngIf="fname?.errors?.['required']">Le prénom est obligatoire.</li>
           <li *ngIf="fname?.errors?.['minlength']">Le prénom doit contenir au moins 3 caractères.</li>
         </ul>
       </mat-form-field>
-    
+
       <mat-form-field class="full-width">
         <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" formControlName="lastname" , [(ngModel)]="user.lname">
+        <input matInput placeholder="Last Name" formControlName="lname" >
         <ul class="text-danger" *ngIf="lname?.touched">
           <li *ngIf="lname?.errors?.['required']">Le nom est obligatoire.</li>
           <li *ngIf="lname?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</li>
         </ul>
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <mat-label>Address</mat-label>
-        <input matInput placeholder="Address" formControlName="address" , [(ngModel)]="user.address">
+        <input matInput placeholder="Address" formControlName="address" >
         <ul class="text-danger" *ngIf="address?.touched">
           <li *ngIf="address?.errors?.['required']">L'adresse est obligatoire.</li>
           <li *ngIf="address?.errors?.['minlength']">L'adresse doit contenir au moins 3 caractères.</li>
         </ul>
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email" , [(ngModel)]="user.email">
+        <input matInput placeholder="Email" formControlName="email" >
         <ul class="text-danger" *ngIf="email?.touched">
           <li *ngIf="email?.errors?.['required']">L'email est obligatoire.</li>
           <li *ngIf="email?.errors?.['email']">L'email est invalide.</li>
           <li *ngIf="email?.errors?.['missingDot']">L'email doit contenir un point.</li>
         </ul>
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Password" formControlName="password", [(ngModel)]="user.password">
-
+        <input matInput type="password" placeholder="Password" formControlName="password"  >
         <ul class="text-danger" *ngIf="password?.touched">
           <li *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire.</li>
           <li *ngIf="password?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères.</li>
           <li *ngIf="password?.errors?.['pattern']">Le mot de passe doit inclure une majuscule, une minuscule, un chiffre et un caractère spécial.</li>
         </ul>
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <mat-label>Repeat Password</mat-label>
-        <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword" , [(ngModel)]="user.repeatepassword">
-        <ul class="text-danger" *ngIf="repeatepassword?.touched">
-          <li *ngIf="repeatepassword?.errors?.['required']">La confirmation du mot de passe est obligatoire.</li>
-          <li *ngIf="repeatepassword?.errors?.['minlength']">La confirmation doit contenir au moins 8 caractères.</li>
-          <li *ngIf="repeatepassword?.errors?.['pattern']">La confirmation doit inclure une majuscule, une minuscule, un chiffre et un caractère spécial.</li>
+        <input matInput type="password" placeholder="Repeat Password" formControlName="repeatepassword"  >
+        <ul class="text-danger" *ngIf="registerForm.errors?.['mismatch']">
+          <li>Les mots de passe ne correspondent pas.</li>
+          <li *ngIf="repeatepassword?.errors?.['required']">Le repeate password est obligatoire.</li>
+          <li *ngIf="repeatepassword?.errors?.['minlength']">Le repeate password doit contenir au moins 8 caractères.</li>
+          <li *ngIf="repeatepassword?.errors?.['pattern']">Le repeate password doit inclure une majuscule, une minuscule, un chiffre et un caractère spécial.</li>
         </ul>
       </mat-form-field>
+
       <section class="example-section">
         <label class="example-margin">Gender:</label>
-        <mat-radio-group formControlName="gender">
+        <mat-radio-group formControlName="gender"  >
           <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
           <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
           <mat-radio-button class="example-margin" value="other">Other</mat-radio-button>
@@ -73,22 +76,16 @@
 
       <mat-form-field>
         <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob" >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <ul class="text-danger" *ngIf="dob?.touched">
           <li *ngIf="dob?.errors?.['required']">La date de naissance est obligatoire.</li>
         </ul>
       </mat-form-field>
-      
     </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="signupVal()" color="primary" [disabled]="registerForm.invalid">REGISTER</button>
   </mat-card-actions>
 </mat-card>
- 
-  
-
-
-

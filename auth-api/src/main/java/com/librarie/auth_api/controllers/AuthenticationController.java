@@ -17,7 +17,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {

@@ -6,6 +6,7 @@ export class User {
      password? : string;
      repeatepassword? : string;
      gender? : string;
+     dob? : string;
     
     
 }
