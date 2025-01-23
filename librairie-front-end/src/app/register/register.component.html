@@ -88,4 +88,9 @@
   <mat-card-actions>
     <button mat-raised-button (click)="signupVal()" color="primary" [disabled]="registerForm.invalid">REGISTER</button>
   </mat-card-actions>
-</mat-card>
+  
+  <!-- Afficher le message de succès ou d'erreur -->
+  <div *ngIf="message">
+    <p>{{ message }}</p>
+  </div>
+  >

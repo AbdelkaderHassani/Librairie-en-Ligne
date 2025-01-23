@@ -8,7 +8,7 @@ import { catchError } from 'rxjs';
 })
 export class AuthService {
   
-  private baseUrl = 'http://localhost:8080/auth/signup'; // URL de votre microservice d'authentification
+  private baseUrl = 'http://localhost:8005/auth'; // URL de votre microservice d'authentification
 
 
   constructor(private http: HttpClient) {}

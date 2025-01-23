@@ -74,7 +74,7 @@ export class RegisterComponent {
     this.authService.signup(this.registeruser).subscribe(
       response => {
         this.message = 'Inscription réussie !';
-        this.router.navigate(['/login']);
+        
       },
       error => {
         console.error(error);
@@ -88,11 +88,12 @@ export class RegisterComponent {
   signupVal() {
     if (this.registerForm.valid) {
       console.log('Form Submitted', this.registerForm.value);
+      this.signup();  // Appel à la méthode signup
     } else {
       this.registerForm.markAllAsTouched();
     }
-    
   }
+  
 
   get fname() {
     return this.registerForm.get('fname');
