@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!-- Lien vers la page d'accueil -->
+    <div class="home-link">
+      <span><a routerLink="/" aria-label="Accueil">HOME</a></span>
+    </div>
+
+    <!-- Espaceur pour aligner les éléments à droite -->
+    <span class="spacer"></span>
+
+    <!-- Section Navigation principale -->
+    <div class="nav-links">
+      <a mat-button routerLink="/product" aria-label="Les Produits">Les Produits</a>
+      <a mat-button routerLink="/category" aria-label="Catégories">Catégories</a>
+      <a mat-button routerLink="/nouveaute" aria-label="Nouveautés">Nouveautés</a>
+      <a mat-button routerLink="/utilisateur" aria-label="Utilisateurs">Utilisateurs</a>
+      <a mat-button routerLink="/promotion" aria-label="Promotion">Promotion</a>
+      <a mat-button routerLink="/commande1" aria-label="Commande">Commande</a>
+      <a mat-button routerLink="/stock" aria-label="Stock">Stock</a>
+      <a mat-button routerLink="/dashboard" aria-label="Dashboard">Dashboard</a>
+    </div>
+
+    <!-- Espaceur pour aligner les éléments suivants à droite -->
+    <span class="spacer"></span>
+
+    <!-- Section Login -->
+    <div class="auth-links">
+      <a mat-button routerLink="/login" aria-label="Se connecter">Login</a>
+      <a mat-button routerLink="/register" aria-label="S'inscrire">Register</a>
+    </div>
+
+    <!-- Section Ajouter Produit -->
+    <div class="add-links">
+      <a mat-button routerLink="product/add" aria-label="Ajouter Produit">Ajouter Produit</a>
+      <a mat-button routerLink="category/add" aria-label="Ajouter Catégorie">Ajouter Catégorie</a>
+    </div>
+
+    <!-- Section Administration -->
+    <div class="admin-links">
+      <a mat-button routerLink="/promotion/add" aria-label="Ajouter Promotion">Ajouter Promotion</a>
+      <a mat-button routerLink="/nouveaute/add" aria-label="Ajouter Nouveautés">Ajouter Nouveautés</a>
+      <a mat-button routerLink="/message" aria-label="Messages">Messages</a>
+      <a mat-button routerLink="/product/myproducts" aria-label="Mes Produits">Mes Produits</a>
+      <a mat-button routerLink="/admin/profile" aria-label="Profil">Profile</a>
+      <a mat-button routerLink="/admin/logout" aria-label="Déconnexion">Log Out</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

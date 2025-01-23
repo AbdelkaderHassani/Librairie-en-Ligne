@@ -1,0 +1,26 @@
+
+    <div class="col-8">
+        <div class="border border-1 m-3 my-5 card">
+            <img *ngIf="product.productImg" [src]="imgUrl + product.productImg" class="img-fluid card-img-top" alt="{{product.title}}">
+            <div class="card-body">
+                <h5 class="card-title mb-3">{{product.title}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngIf="product.categoryId"><strong>Category: </strong>{{product.categoryId.name}}</li>
+                <li class="list-group-item">
+                    <span class="price-symbol">DT</span>
+                    <span class="price-whole">{{product.price}}</span>
+                </li>
+                <li class="list-group-item" *ngIf="product.usbn"><strong>GTIN: </strong>{{product.usbn}}</li>
+                <li class="list-group-item" *ngIf="product.auteur"><strong>Auteur: </strong>{{product.auteur}}</li>
+                <li class="list-group-item" *ngIf="product.description"><strong>Description: </strong>{{product.description}}</li>
+                <li class="list-group-item" *ngIf="product.datearrivage"><strong>Date d'arrivée: </strong>{{product.datearrivage}}</li>
+            </ul>
+            <div class="card-body">
+                <button *ngIf="product?._id" routerLink="/product/single/edit/{{product._id}}" class="card-link btn btn-success">Modifier</button>
+                <button *ngIf="product?._id" routerLink="/product/single/delete/{{product._id}}" class="card-link btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+    </div>
+
+

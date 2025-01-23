@@ -1,0 +1,41 @@
+/* Espacement pour que les éléments prennent toute la largeur */
+.spacer {
+    flex-grow: 1;
+}
+
+/* Style des liens dans les sections de la navbar */
+.nav-links a,
+.admin-links a,
+.add-product-links a,
+.add-category-links a {
+    margin-right: 10px;
+    padding: 10px; /* Ajout de padding pour rendre les liens plus cliquables */
+    display: inline-block; /* Assurez-vous que chaque lien est un bloc en ligne */
+}
+
+/* Assurez-vous que la barre de navigation s'adapte bien à l'écran */
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permet aux éléments de se répartir sur plusieurs lignes si nécessaire */
+    padding: 0 16px;
+    background-color: #1976D2; /* Exemple de fond bleu */
+    color: white; /* Assurez-vous que le texte contraste bien avec le fond */
+}
+
+/* Style des liens */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Style au survol des liens */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Contrôler le comportement de la navbar quand elle devient trop large */
+mat-toolbar {
+    overflow: auto; /* Permet l'affichage si les éléments dépassent */
+}

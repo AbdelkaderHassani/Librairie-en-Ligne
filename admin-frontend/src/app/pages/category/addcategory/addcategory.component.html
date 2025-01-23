@@ -1,0 +1,37 @@
+<mat-toolbar class="register-title">
+    <span>Ajouter Une Nouveauté</span>
+  </mat-toolbar>
+  
+  <mat-card class="my-card">
+    <mat-card-content>
+      <form [formGroup]="categoryForm" class="my-form" (ngSubmit)="handleCategory()">
+  
+        <mat-form-field class="full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Enter category name" formControlName="name">
+          <ul class="text-danger" *ngIf="name?.touched && name?.invalid">
+            <li *ngIf="name?.errors?.['required']">Le nom est requis.</li>
+          </ul>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Enter category description" formControlName="desc" rows="5"></textarea>
+          <ul class="text-danger" *ngIf="desc?.touched && desc?.invalid">
+            <li *ngIf="desc?.errors?.['required']">La description est requise.</li>
+          </ul>
+        </mat-form-field>
+  
+        <div class="mb-3">
+          <input type="file" class="form-control" name="categoryImg" (change)="onChangeImg($event)" accept="image/*">
+          <div class="text-danger" *ngIf="errMsg.categoryImg">{{ errMsg.categoryImg }}</div>
+        </div>
+  
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="categoryForm.invalid">Ajouter la nouveauté</button>
+        </mat-card-actions>
+  
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

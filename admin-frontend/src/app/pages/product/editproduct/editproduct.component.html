@@ -1,0 +1,71 @@
+<form [formGroup]="editForm" (ngSubmit)="handleEdit()">
+    <div class="row">
+        <div class="mb-3">
+            <input class="form-control" placeholder="title" formControlName="title">
+            <div *ngIf="title?.['invalid'] && (title?.['dirty'] || title?.['touched'])" class="alert alert-danger">
+                <span *ngIf="title?.['errors']?.['required']">Title is required</span>
+            </div>
+            <div class="alert alert-danger" *ngIf="errMsg.title">{{errMsg.title}}</div>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="quantity" formControlName="quantity" type="number">
+            <div *ngIf="quantity?.invalid && (quantity?.dirty || quantity?.touched)" class="alert alert-danger">
+                <span *ngIf="quantity?.errors?.['required']">Quantity is required</span>
+            </div>
+            <div class="alert alert-danger" *ngIf="errMsg.quantity">{{errMsg.quantity}}</div>
+        </div>
+        
+        <div class="mb-3">
+            <textarea class="form-control" placeholder="description" formControlName="description" rows="5"></textarea>
+            <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="alert alert-danger">
+                <span *ngIf="description?.errors?.['required']">Description is required</span>
+            </div>
+            <div class="alert alert-danger" *ngIf="errMsg.description">{{errMsg.description}}</div>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control" placeholder="price" formControlName="price" type="number">
+            <div *ngIf="price?.['invalid'] && (price?.['dirty'] || price?.['touched'])" class="alert alert-danger">
+                <span *ngIf="price?.['errors']?.['required']">price is required</span>
+            </div>
+            <div class="alert alert-danger" *ngIf="errMsg.price">{{errMsg.price}}</div>
+        </div>
+
+        <div class="mb-3">
+            <label>Category</label>
+            <select class="form-select" formControlName="categoryId">
+                <option value="" disabled>Choose Category</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}
+                </option>
+            </select>
+            <div *ngIf="categoryId?.['invalid'] && (categoryId?.['dirty'] || categoryId?.['touched'])" class="alert alert-danger">
+                <span *ngIf="categoryId?.['errors']?.['required']">Category is required</span>
+            </div>
+            <div class="alert alert-danger" *ngIf="errMsg.categoryId">{{errMsg.categoryId}}</div>
+        </div>
+        
+        <div class="mb-3">
+            <input type="file" class="form-control" name="productImg" (change)="onChangeImg($event)">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="USBN" formControlName="usbn">
+            <div class="alert alert-danger" *ngIf="errMsg.usbn">{{errMsg.usbn}}</div>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control" placeholder="Auteur" formControlName="auteur">
+            <div class="alert alert-danger" *ngIf="errMsg.auteur">{{errMsg.auteur}}</div>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control" placeholder="Datearrivage" formControlName="datearrivage">
+            <div class="alert alert-danger" *ngIf="errMsg.processor">{{errMsg.processor}}</div>
+        </div>
+
+        
+
+        <div class="mb-3">
+            <button class="btn btn-success">Edit</button>
+        </div>
+    </div>
+</form>
