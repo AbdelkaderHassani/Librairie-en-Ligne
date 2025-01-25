@@ -45,14 +45,13 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private boolean emailVerified = false;
 
-    @Column(name = "confirmation_token", nullable = false)
+    @Column(name = "confirmation_token")
     private String confirmationToken;
 
-
-    @Column(name = "reset_token", nullable = true)
+    @Column(name = "reset_token")
     private String resetToken;
 
-    @Column(name = "reset_token_expiration", nullable = true)
+    @Column(name = "reset_token_expiration")
     private Date resetTokenExpiration;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -117,6 +116,9 @@ public class User implements UserDetails {
     public void generateConfirmationToken() {
         if (this.confirmationToken == null) {
             this.confirmationToken = UUID.randomUUID().toString();
+        }
+        if (this.roles == null || this.roles.isEmpty()) {
+            this.roles = Set.of(EnumRole.USER);
         }
     }
 }

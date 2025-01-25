@@ -10,18 +10,19 @@ public enum Gender {
     @JsonCreator
     public static Gender fromString(String value) {
         if (value != null) {
-            switch (value.toUpperCase()) {
+            String upperValue = value.toUpperCase();
+            switch (upperValue) {
                 case "HOMME":
+                case "MALE":
+                case "M":
                     return HOMME;
                 case "FEMME":
-                    return FEMME;
-                case "Homme":
-                    return HOMME;
-                case "Femme":
+                case "FEMALE":
+                case "F":
                     return FEMME;
             }
         }
-        throw new IllegalArgumentException("Unknown gender value: " + value);
+        throw new IllegalArgumentException("Unknown gender value: " + value + ". Accepted values are: HOMME, MALE, M, FEMME, FEMALE, F");
     }
 
     @JsonValue
